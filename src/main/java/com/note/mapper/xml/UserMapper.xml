@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.note.mapper.UserMapper">
+    <!-- 插入用户 -->
+    <insert id="addUser" parameterType="com.note.entities.User">
+        INSERT INTO user_detail_info(
+        user_name,name,pass_word,address,sex,birthday,education,tel,nation,create_date,update_date
+        ) VALUES (
+        #{userName},
+        #{userName},
+        #{passWord},
+        #{address},
+        #{sex},
+        #{birthday},
+        #{education},
+        #{tel},
+        #{nation},
+        #{createDate},
+        #{updateDate}
+        )
+    </insert>
+
+    <select id="getByUsername" parameterType="String" resultType="com.note.entities.User">
+        select * from user_detail_info where user_name=#{userName} and current_timestamp>STR_TO_DATE('2020-11-25 18:12:00','%Y-%m-%d %H:%i:%s')
+    </select>
+
+    <update id="updateUser">
+        update user_detail_info
+            set
+                pass_word=#{passWord},
+                update_date=#{updateDate}
+            where id=#{id}
+    </update>
+
+    <select id="getByTel" parameterType="String" resultType="com.note.entities.User">
+        select * from user_detail_info where tel=#{tel}
+    </select>
+
+    <select id="getByEmail" parameterType="String" resultType="com.note.entities.User">
+        select * from user_detail_info where email=#{email}
+    </select>
+</mapper>

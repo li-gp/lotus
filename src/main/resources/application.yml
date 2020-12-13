@@ -1,0 +1,81 @@
+spring:
+  datasource:
+    password: root
+    username: root
+    #mysql8版本以上驱动包要指定时区serverTimezone=GMT%2B8
+    url: jdbc:mysql://127.0.0.1:3306/test?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #更改数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    # 数据源其他配置, DataSourceProperties中没有相关属性,默认无法绑定
+    initialSize: 8
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: true
+    # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+    filters: stat,wall,slf4j
+    maxPoolPreparedStatementPerConnectionSize: 25
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    # 配置多语言
+  messages:
+    basename: i18n.login
+  #thymeleaf:
+  #  cache: true
+  security:
+    user:
+      name: user
+      password: 123456
+  mail:
+    username: 2323688845@qq.com
+    host: smtp.qq.com
+    password: zayswqitffdzebga
+    properties:
+      smtp:
+        ssl:
+          enable: true
+          #spring-boot中对于@RestController或者@Controller+@ResponseBody注解的接口方法的返回值默认是Json格式，
+  jackson:
+    time-zone: GMT+8
+#关闭security验证
+#  profiles:
+#    active: prod
+#配置mybatis
+#mybatis:
+  #configuration:
+    #map-underscore-to-camel-case: true
+
+#  config-location: classpath:mybatis/mybatis-config.xml
+#  mapper-locations: classpath:mybatis/mapper/*.xml
+logging:
+  level:
+    com.note.mapper: debug #设置特定包下文件log控制台打印sql
+lotus:
+  jwt:
+    config:
+      secretKey: louts
+      expire: 604800  #单位秒，7天
+#配置mybatis-plus
+mybatis-plus:
+  type-aliases-package: com.note.entities #扫描实体路径
+  # xxxMapper.xml 文件路径
+  mapper-locations: classpath:com/note/mapper/xml/**.xml
+---
+server:
+  port: 8082
+spring:
+  profiles: dev
+---
+server:
+  port: 8083
+spring:
+  profiles: prod
+

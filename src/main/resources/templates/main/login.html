@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>success</title>
+</head>
+<body>
+<form >
+    <div>
+        <label for="user" th:text="#{login.username}"></label>
+        <input id="user" type="text" name="username"/>
+    </div>
+    <div>
+        <label for="mima" th:text="#{login.password}"></label>
+        <input id="mima" type="password" name="password"/>
+    </div>
+    <div>
+        <input type="checkbox" />[[#{login.rememberme}]]
+    </div>
+    <div>
+        <input type="submit" th:value="#{login.sign}" value="sign"/>
+        <input type="reset" th:value="#{login.reset}" value="rest"/>
+    </div>
+    <div>
+        <a th:href="@{/login.html(l='zh_CN')}">[[#{login.chainese}]]</a>
+        <a th:href="@{/login.html(l='en_US')}">[[#{login.english}]]</a>
+    </div>
+</form>
+
+</body>
+</html>

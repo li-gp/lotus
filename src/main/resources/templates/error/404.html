@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>404</title>
+</head>
+<body>
+<!-- 也可以放到static下，优先准确匹配404 500，找不到，然后模糊匹配4xx 5xx -->
+<h2>404错误</h2>
+<div>[[${message}]]</div>
+<div>[[${company}]]</div>
+</body>
+</html>
